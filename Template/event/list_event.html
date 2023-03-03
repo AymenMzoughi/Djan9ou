@@ -14,10 +14,18 @@
 
       <p class="card-text mt-2">Nombre : {{p.nbr_participant}}</p>
     </div>
-    <div class="card-footer">
+    <!-- <div class="card-footer">
       <small class="text-muted">{{p.evt_date}}</small>
+    </div> -->
+    <div class="card-footer text-muted">
+        
+      <a href="{% url 'update' p.id %}" class="btn btn-outline-secondary btn-sm">Update Event</a>
+  
+      <a class="btn btn-danger" href="{% url 'delete' p.id %}">  Delete Event </a>
+      
     </div>
   </div>
+
 
   {% endfor %}
 </div>
