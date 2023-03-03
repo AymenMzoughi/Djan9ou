@@ -42,24 +42,40 @@ class AddEvent(CreateView):
     form_class = EvenementForm
     success_url = reverse_lazy('Affiche')
 
-def update(request, event_id):
+# def update(request, event_id):
         
-	event = Event.objects.get(pk=event_id)
+# 	event = Event.objects.get(pk=event_id)
 	
-	form = EvenementForm(request.POST or None, instance=event)
+# 	form = EvenementForm(request.POST or None, request.FILES, instance=event)
 	
-	if form.is_valid():
-		form.save()
-		return redirect('list_event')
+# 	if form.is_valid():
+# 		form.save()
+# 		return redirect('list_event')
 
-	return render(request, 'event/updateEvent.html', 
-		{'event': event,
-		'form':form})
+# 	return render(request, 'event/updateEvent.html', 
+# 		{'event': event,
+# 		'form':form})
 
-def deleteEvent(request, pk):
+class update(UpdateView):
+    model = Event
+    template_name= "event/updateEvent.html"
+    form_class = EvenementForm
+    success_url = reverse_lazy('Affiche')
+
+# def deleteEvent(request, pk):
    
-   iteam = Event.objects.get(id=pk)
-   iteam.delete()
-   return redirect('Affiche')
+#    iteam = Event.objects.get(id=pk)
+#    iteam.delete()
+#    return redirect('Affiche')
+
+class deleteEvent(DeleteView):
+    model = Event
+    template_name = "event/delete.html"
+    success_url = reverse_lazy('Delete')
 
 
+class Details(DetailView):
+    model = Event
+    template_name = "event/detailEvent.html"
+    context_object_name = "e"
+    
